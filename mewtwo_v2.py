@@ -49,11 +49,11 @@ myfile.write('\n'+'\n')
 
 for part in range(num_part):
         myfile.write('x' + str(part) +":" + "final_test_v5.py\n")
-        myfile.write("  python final_test_v5.py " + path_in + " " + str(part) + ' ' + str(n) + "\n")
+        myfile.write("  python final_test_v5.py " + path_in + " " + str(part) + ' ' + str(n) + " > " + "x" + str(part) + "\n")
 
 if rem_part > 0:
 	myfile.write('x' + str(part+1) +":" + "final_test_v5.py\n")
-	myfile.write(' python final_test_v5.py ' + path_in + " " + str(part + 1) + ' ' + str(rem_part) + ' ' + str(n) + '\n')
+	myfile.write('  python final_test_v5.py ' + path_in + " " + str(part + 1) + ' ' + str(rem_part) + ' ' + str(n) + " > " + 'x' + str(part+1) + '\n')
 myfile.close()
 
 

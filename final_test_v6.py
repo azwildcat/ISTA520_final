@@ -56,10 +56,10 @@ path_out = path_in + '/out_put/' 				#where we want the output to go
 
 num_files = len(glob.glob1(path_in,'*.pgm'))		#number of file of type
 start_val = n * numb
-end_val = start_val + t
+end_val = start_val + t + 1
 
 img_names = []
-for f in range(start_val,end_val):
+for f in range(start_val+1,end_val):
 	 img_names.append('%6.6i' % f + '.pgm')	#tells up what the names of each file we are using stored as an array
 img_count = len(img_names) 				#tells us how many images there are
 

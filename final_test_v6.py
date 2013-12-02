@@ -43,7 +43,7 @@ if len(sys.argv) > 1:
 				if sys.argv[4].isdigit() == True:
 					numb = int(sys.argv[4])
 				else:
-					print "Input 4 is not a valid number: Extiging"
+					print "Input 4 is not a valid number: Exitging"
 					quit()
 else:
 	print "No path entered.  Exiting..."

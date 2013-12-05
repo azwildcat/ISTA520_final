@@ -1,4 +1,16 @@
 # version 2
+
+#!/usr/bin/python
+
+# This script creates a Makeflow file based on the number of images inside a specified directory 
+# and a desired amount of partitions. The created Makeflow file will call final_test_v6.py
+# to process the images
+# Input: See print_usage() for the input parameters and their order.
+# Output: a single Makeflow file
+# Author: Ian Montgomery and Jorge Rodriguez
+
+
+
 import os
 import sys
 import glob

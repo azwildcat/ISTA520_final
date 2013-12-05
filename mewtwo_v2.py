@@ -5,6 +5,21 @@ import glob
 
 cmd = "../vlfeat-0.9.17/bin/glnxa64/sift"
 
+num_args = 2
+
+def print_usage():
+    print "Usage: python ", sys.argv[0], " <images_directory> <number_of_partitions>"
+    sys.exit(1)
+
+if (len(sys.argv) == 1):
+    print_usage()
+elif len(sys.argv) <> num_args:
+    print "The script expects %d arguments. You provided %d." % (num_args, len(sys.argv))
+    print_usage()
+
+
+
+
 if len(sys.argv) > 1:
 	path_in = sys.argv[1]
 	if os.path.isdir(path_in) == False:

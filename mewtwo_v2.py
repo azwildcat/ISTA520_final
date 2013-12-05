@@ -1,9 +1,36 @@
 # version 2
+
+#!/usr/bin/python
+
+# This script creates a Makeflow file based on the number of images inside a specified directory 
+# and a desired amount of partitions. The created Makeflow file will call final_test_v6.py
+# to process the images
+# Input: See print_usage() for the input parameters and their order.
+# Output: a single Makeflow file
+# Author: Ian Montgomery and Jorge Rodriguez
+
+
+
 import os
 import sys
 import glob
 
 cmd = "../vlfeat-0.9.17/bin/glnxa64/sift"
+
+num_args = 2
+
+def print_usage():
+    print "Usage: python ", sys.argv[0], " <images_directory> <number_of_partitions>"
+    sys.exit(1)
+
+if (len(sys.argv) == 1):
+    print_usage()
+elif len(sys.argv) <> num_args:
+    print "The script expects %d arguments. You provided %d." % (num_args, len(sys.argv))
+    print_usage()
+
+
+
 
 if len(sys.argv) > 1:
 	path_in = sys.argv[1]

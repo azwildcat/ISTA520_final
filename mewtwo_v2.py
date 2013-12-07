@@ -37,7 +37,7 @@ if len(sys.argv) > 1:
 	if os.path.isdir(path_in) == False:
 		print("Not a Valid directory:  Exiting")
 		quit()
-	n = len(glob.glob1(path_in, '*.pgm'))
+#	n = len(glob.glob1(path_in, '*.pgm'))
 	if len(sys.argv) > 2:
 		if sys.argv[2].isdigit() == True:
 			n = int(sys.argv[2])
@@ -67,12 +67,17 @@ print num_files
 
 myfile = open('Makeflow','w')
 
+
+'''
 for image in images:
 
         myfile.write(path_in + "/" + image)
         myfile.write(" ")
 myfile.write(cmd + ":")
 myfile.write('\n'+'\n')
+'''
+
+
 
 for part in range(num_part):
         myfile.write('x' + str(part) +":" + "final_test_v6.py\n")

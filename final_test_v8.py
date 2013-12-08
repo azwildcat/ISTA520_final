@@ -5,30 +5,38 @@ import glob
 import multiprocessing
 
 ##Worker used to submit to differenct cores of 
-def worker(ctrl, name):
+def worker(job_queue):
 	"""Worker function"""
-	print ctrl
-	error_code = os.system(ctrl)
-	if (error_code <> 0):
-		raiseException("ERROR: SIFT didn't run correctly on " + name)
-		print "Terminating process"
-		sys.exit(1)
-	return
+	for ctrl in iter(job_queue.get, 'STOP'):
+		print ctrl
+		error_code = os.system(ctrl)
+		if (error_code <> 0):
+			raiseException("ERROR: SIFT didn't run correctly")
+			print "Terminating process"
+			sys.exit(1)
 
 path_in = sys.argv[1]
 path_out = path_in + '/out_put/'
 
 start_time = int(sys.argv[2])
-end_time = int(sys.argv[3])
+end_time = int(sys.argv[3]) + 1
 
 if __name__ == '__main__':
-	jobs = []
+	job_queue = multiprocessing.Queue()
 	for i in range(start_time,end_time):
 		key_file = path_out + '%6.6i' % i  +'.vl'
-		cmd = '~/vlfeat-0.9.17/bin/glnxa64/sift' + " " + path_in + "/"  + '%6.6i' % i + '.pmg' + " -o " + key_file
-		p = multiprocessing.Process(target=worker, args=(cmd, '%6.6i' % i + '.pgm'))	
-		jobs.append(p)
-		p.start()
+		cmd = 'sift' + " " + path_in + "/"  + '%6.6i' % i + '.pgm' + " -o " + key_file
+		job_queue.put(cmd)
+	
+		
+	core_worker = 10
+        workers = [multiprocessing.Process(target=worker, args=(job_queue,)) for i in range(core_worker)]
+	
+	for i in range(core_worker):
+		job_queue.put('STOP')
+	
+	for each in workers:
+		each.start()
 
 
 

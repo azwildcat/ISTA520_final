@@ -1,4 +1,15 @@
-# input design		>python final_test_v6.py [directory] [partition number] [number of files in current partition] [mode of files in partition // optional]
+#!/usr/bin/python
+
+# This script uses the multiprocess module to
+# distribut a sift extraction processes across
+# the cores of a worker node.  
+# Input: <directory path to data> <start value> <end value>
+# Output: corresponding .vl file with sift data in directory
+# <path to data/out_put
+# to change number of workers, change core_worker variable to
+# a different number
+# Author Ian Montgomery (ianmonty@email.arizona.edu)
+
 import os
 import sys
 import glob
@@ -21,6 +32,10 @@ path_out = path_in + '/out_put/'
 start_time = int(sys.argv[2])
 end_time = int(sys.argv[3]) + 1
 
+# number of mutliprocess threads performing tasks.  be careful no to exceed the capacity of
+# the system.  Number of workers greater than 10 seems to have minial increase in speed
+core_workers = 22
+
 if __name__ == '__main__':
 	job_queue = multiprocessing.Queue()
 	for i in range(start_time,end_time):
@@ -28,20 +43,25 @@ if __name__ == '__main__':
 		cmd = 'sift' + " " + path_in + "/"  + '%6.6i' % i + '.pgm' + " -o " + key_file
 		job_queue.put(cmd)
 	
-		
-	core_worker = 10
+	#Setup workers to work on queue	
         workers = [multiprocessing.Process(target=worker, args=(job_queue,)) for i in range(core_worker)]
 	
+	#stop flag for workers, needs to be equivalent to the number of workers else system hangs
 	for i in range(core_worker):
 		job_queue.put('STOP')
 	
+	#starts workers
 	for each in workers:
 		each.start()
 
 
 
-
-
+# v8    optimized for different systems to ensure no overloading by use of queue/worker
+# 	system.
+#
+#
+# v7	redacted
+#
 # v6 	redisiged to work with makeflow
 #	known issue, nut sure how to allow "user defined" file named size
 #	

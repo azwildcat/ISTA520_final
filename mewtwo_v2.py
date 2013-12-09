@@ -81,19 +81,8 @@ myfile.write('\n'+'\n')
 
 for part in range(num_part):
         myfile.write('x' + str(part) +":" + "extract_keypoints.py\n")
-<<<<<<< HEAD
         myfile.write("  python extract_keypoints.py " + path_in + " " + str(part*n) + ' ' + str((part*n) + n) + " > " + "x" + str(part) + "\n")
 
 if rem_part > 0:
 	myfile.write('x' + str(part+1) +":" + "extract_keypoints.py\n")
 	myfile.write('  extract_keypoints.py ' + path_in + " " + str((part + 1)*n) + ' ' + str(rem_part) + " > " + 'x' + str(part+1) + '\n')
-=======
-        myfile.write("  python extract_keypoints.py " + path_in + " " + str(part) + ' ' + str(n) + " > " + "x" + str(part) + "\n")
-
-if rem_part > 0:
-	myfile.write('x' + str(part+1) +":" + "extract_keypoints.py\n")
-	myfile.write('  python extract_keypoints.py ' + path_in + " " + str(part + 1) + ' ' + str(rem_part) + ' ' + str(n) + " > " + 'x' + str(part+1) + '\n')
->>>>>>> 4b40d8272cef42fefb3dbae07cad2c00a10f5d0a
-myfile.close()
-
-

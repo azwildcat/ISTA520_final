@@ -3,7 +3,7 @@
 #!/usr/bin/python
 
 # This script creates a Makeflow file based on the number of images inside a specified directory 
-# and a desired amount of partitions. The created Makeflow file will call final_test_v6.py
+# and a desired amount of partitions. The created Makeflow file will call extract_keypoints.py
 # to process the images
 # Input: See print_usage() for the input parameters and their order.
 # Output: a single Makeflow file

@@ -3,10 +3,10 @@
 #!/usr/bin/python
 
 # This script creates a Makeflow file based on the number of images inside a specified directory 
-# and a desired amount of partitions. The created Makeflow file will call final_test_v6.py
+# and a desired amount of partitions. The created Makeflow file will call extract_keypoints.py
 # to process the images
 # Input: See print_usage() for the input parameters and their order.
-# Output: a single Makeflow file
+# Output: a single Makeflow file will be created inside the current directory
 # Author: Ian Montgomery and Jorge Rodriguez
 
 
@@ -81,11 +81,19 @@ myfile.write('\n'+'\n')
 
 for part in range(num_part):
         myfile.write('x' + str(part) +":" + "extract_keypoints.py\n")
+<<<<<<< HEAD
         myfile.write("  python extract_keypoints.py " + path_in + " " + str(part*n) + ' ' + str((part*n) + n) + " > " + "x" + str(part) + "\n")
 
 if rem_part > 0:
 	myfile.write('x' + str(part+1) +":" + "extract_keypoints.py\n")
 	myfile.write('  extract_keypoints.py ' + path_in + " " + str((part + 1)*n) + ' ' + str(rem_part) + " > " + 'x' + str(part+1) + '\n')
+=======
+        myfile.write("  python extract_keypoints.py " + path_in + " " + str(part) + ' ' + str(n) + " > " + "x" + str(part) + "\n")
+
+if rem_part > 0:
+	myfile.write('x' + str(part+1) +":" + "extract_keypoints.py\n")
+	myfile.write('  python extract_keypoints.py ' + path_in + " " + str(part + 1) + ' ' + str(rem_part) + ' ' + str(n) + " > " + 'x' + str(part+1) + '\n')
+>>>>>>> 4b40d8272cef42fefb3dbae07cad2c00a10f5d0a
 myfile.close()
 
 

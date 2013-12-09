@@ -6,7 +6,7 @@
 # and a desired amount of partitions. The created Makeflow file will call extract_keypoints.py
 # to process the images
 # Input: See print_usage() for the input parameters and their order.
-# Output: a single Makeflow file
+# Output: a single Makeflow file will be created inside the current directory
 # Author: Ian Montgomery and Jorge Rodriguez
 
 

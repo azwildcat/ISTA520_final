@@ -15,20 +15,20 @@ import os
 import sys
 import glob
 
-cmd = "../vlfeat-0.9.17/bin/glnxa64/sift"
+cmd = "sift"
 
 num_args = 2
 
 def print_usage():
     print "Usage: python ", sys.argv[0], " <images_directory> <number_of_partitions>"
     sys.exit(1)
-
+'''
 if (len(sys.argv) == 1):
     print_usage()
 elif len(sys.argv) <> num_args:
     print "The script expects %d arguments. You provided %d." % (num_args, len(sys.argv))
     print_usage()
-
+'''
 
 
 
@@ -80,12 +80,12 @@ myfile.write('\n'+'\n')
 
 
 for part in range(num_part):
-        myfile.write('x' + str(part) +":" + "final_test_v6.py\n")
-        myfile.write("  python final_test_v6.py " + path_in + " " + str(part) + ' ' + str(n) + " > " + "x" + str(part) + "\n")
+        myfile.write('x' + str(part) +":" + "extract_keypoints.py\n")
+        myfile.write("  python extract_keypoints.py " + path_in + " " + str(part*n) + ' ' + str((part*n) + n) + " > " + "x" + str(part) + "\n")
 
 if rem_part > 0:
-	myfile.write('x' + str(part+1) +":" + "final_test_v6.py\n")
-	myfile.write('  python final_test_v6.py ' + path_in + " " + str(part + 1) + ' ' + str(rem_part) + ' ' + str(n) + " > " + 'x' + str(part+1) + '\n')
+	myfile.write('x' + str(part+1) +":" + "extract_keypoints.py\n")
+	myfile.write('  extract_keypoints.py ' + path_in + " " + str((part + 1)*n) + ' ' + str(rem_part) + " > " + 'x' + str(part+1) + '\n')
 myfile.close()
 
 

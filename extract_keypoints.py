@@ -30,12 +30,12 @@ def worker(job_queue):
 path_in = sys.argv[1]
 path_out = path_in + '/out_put/'
 
-start_time = int(sys.argv[2])
-end_time = int(sys.argv[3]) + 1
+start_time = int(sys.argv[2])+1
+end_time = int(sys.argv[3])+1
 
 # number of mutliprocess threads performing tasks.  be careful no to exceed the capacity of
 # the system.  Number of workers greater than 10 seems to have minial increase in speed
-core_workers = 22
+core_worker = 22
 
 if __name__ == '__main__':
 	job_queue = multiprocessing.Queue()

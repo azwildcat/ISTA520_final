@@ -1,8 +1,10 @@
 # A script that sets up the iRODS environment on the server
 # For more information, check https://pods.iplantcollaborative.org/wiki/display/start/Using+icommands
 from fabric.api import *
-env.user =  'jorgeorodriguez'
-env.host = ['login.hpc.arizona.edu']
+#env.user =  'jorgeorodriguez'
+env.user =  'jorgeorod'
+env.host = ['lima.futuregrid.org']
+#env.host = ['login.hpc.arizona.edu']
 def setup_icommands():
     run("wget -c http://www.iplantcollaborative.org/sites/default/files/irods/icommands.x86_64.tar.bz2")
     run("bunzip2 icommands.x86_64.tar.bz2")
@@ -30,3 +32,13 @@ def setup_sift():
     # Executed: /bin/bash -l -c "make"  "
     #run("cd vlfeat-0.9.17")
     #run("make")
+
+def setup_parallel():
+    run("wget -c http://ftp.gnu.org/gnu/parallel/parallel-20131122.tar.bz2")
+    #(or, the latest parallel-latest.tar.bz2 )
+    run("bunzip2 parallel-20131122.tar.bz2")
+    run("tar xf parallel-20131122.tar")
+    run("rm- f parallel-20131122.tar")
+    run("cd parallel-20131122")
+    run("./configure --prefix=$HOME")
+    run("make && make install")

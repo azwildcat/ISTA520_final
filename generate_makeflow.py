@@ -20,7 +20,7 @@ cmd = "sift"
 num_args = 2
 
 def print_usage():
-    print "Usage: python ", sys.argv[0], " <images_directory> <number_of_partitions>"
+    print "Usage: python ", sys.argv[0], " <input_directory> <number_of_images_in_a_partition>"
     sys.exit(1)
 '''
 if (len(sys.argv) == 1):
